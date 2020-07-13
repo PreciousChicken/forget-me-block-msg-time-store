@@ -12,7 +12,7 @@ const contractAddress ='0x2c93564045502dBC5e90009e8408C0B7b888523e';
 let provider;
 let signer;
 let timeStoreContract;
-let noProviderAbort = false;
+let noProviderAbort = true;
 
 // Ensures metamask or similar installed
 async function enableEth() {
