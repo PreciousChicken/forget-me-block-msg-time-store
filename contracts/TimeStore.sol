@@ -10,9 +10,7 @@ contract TimeStore  {
         uint unlockTime;
     }
     StoredData[] public userStoredData;
-    string[] public arrString;
     mapping(address => StoredData[]) public store;
-    string private msgData;
         
     // Finds length of current array, so to generate next ID number
     // Next ID starts at 1, so IDs of zero can be removed
@@ -27,13 +25,9 @@ contract TimeStore  {
         store[msg.sender] = userStoredData;
     }
 
-    // Returns all msg for msg.sender, regardless of time
-    function getMsgNow() public view returns (StoredData[] memory) {
-        StoredData[] memory tempData = store[msg.sender];
-        return tempData;
-    }
 
-
+    // Returns from smart contract, as array of objects, all messages that are unlocked
+    // For any message not unlocked returns an object with blank values
     function getMsgTimed() public view returns (StoredData[] memory) {
         StoredData[] memory currentData = store[msg.sender];
         StoredData[] memory unlockedData = new StoredData[](currentData.length);
@@ -46,13 +40,7 @@ contract TimeStore  {
             }
         }
         return unlockedData;
-
-        //TODO: unlockedData full of zeros, shall I filter in React or in solidity?
     }
     
 }
-
-// TimeStore.deployed().then(function(instance) {app = instance})
-// app.storeMsg("Hello", 1)
-// app.retrieveMsgNow()
 
