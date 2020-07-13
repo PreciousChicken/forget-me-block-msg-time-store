@@ -15,22 +15,19 @@ let timeStoreContract;
 let noProviderAbort = true;
 
 // Ensures metamask or similar installed
-async function enableEth() {
-	if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
-		try{
-			await window.ethereum.enable()
-			provider = new ethers.providers.Web3Provider(window.ethereum);
-			signer = provider.getSigner();
-			timeStoreContract = new ethers.Contract(contractAddress, TimeStore.abi, signer);
-			noProviderAbort = false;
-		} catch(e) {
-			noProviderAbort = true;
-		}
+if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
+	try{
+		// Ethers.js set up, gets data from MetaMask and blockchain
+		window.ethereum.enable().then(
+			provider = new ethers.providers.Web3Provider(window.ethereum)
+		);
+		signer = provider.getSigner();
+		timeStoreContract = new ethers.Contract(contractAddress, TimeStore.abi, signer);
+		noProviderAbort = false;
+	} catch(e) {
+		noProviderAbort = true;
 	}
 }
-
-enableEth();
-
 
 function App() {
 	const refreshMinutes = 5; // Changes minutes checks blockchain
@@ -62,7 +59,6 @@ function App() {
 		timeStoreContract.getMsgTimed().then(msg => {setStoredData(msg)}); 
 	}
 
-
 	// Handles user store message form submit
 	const handleStoreMsg = (e: React.FormEvent) => {
 		let unixTimeStamp = moment(selectedDate).unix();
@@ -70,13 +66,11 @@ function App() {
 		e.preventDefault();
 	};
 
-
 	// Handles user get message now form submit
 	const handleGetMsg = (e: React.FormEvent) => {
 		getStoredMsg();
 		e.preventDefault();
 	};
-
 
 	return (
 		<main>
@@ -89,7 +83,7 @@ function App() {
 		<form onSubmit={handleStoreMsg}>
 
 		<div className="block-element">
-	<MuiPickersUtilsProvider utils={DateFnsUtils}>	
+		<MuiPickersUtilsProvider utils={DateFnsUtils}>	
 		<KeyboardDateTimePicker 
 		format="yyyy-MM-dd HH:mm"
 		ampm="false"
@@ -132,10 +126,10 @@ function App() {
 			{storedData.map(msg => {
 				if(msg.id.toNumber() > 0) {
 					return (
-				<tr key={msg.id.toNumber()}>
-				<td>{moment.unix(msg.unlockTime.toNumber()).format("DD MMM YY, HH:mm")}</td>
-				<td>{msg.storedMsg}</td>
-				</tr>
+						<tr key={msg.id.toNumber()}>
+						<td>{moment.unix(msg.unlockTime.toNumber()).format("DD MMM YY, HH:mm")}</td>
+						<td>{msg.storedMsg}</td>
+						</tr>
 					)
 				}
 				return null;
