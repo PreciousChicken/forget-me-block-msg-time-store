@@ -61,8 +61,8 @@ module.exports = {
     // },
 
 		//JDH: Uncomment this block for Ropsten.
-    Useful for deploying to a public network.
-    NB: It's important to wrap the provider as a function.
+    // Useful for deploying to a public network.
+    // NB: It's important to wrap the provider as a function.
     ropsten: {
       provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/696675505d064d3a8287ebe9fa724db0`),
       network_id: 3,       // Ropsten's id
