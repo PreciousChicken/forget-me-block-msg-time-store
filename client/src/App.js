@@ -7,7 +7,7 @@ import './App.css';
 import { ethers } from "ethers";
 import TimeStore from "./contracts/TimeStore.json";
 
-const contractAddress ='0x48881293386EEa80614E2A4c6c630f86d81bcad2';
+const contractAddress ='0x2c93564045502dBC5e90009e8408C0B7b888523e';
 
 let provider;
 let signer;
@@ -69,7 +69,6 @@ function App() {
 
 	// Handles user get message now form submit
 	const handleGetMsg = (e: React.FormEvent) => {
-		console.log("Hello");
 		getStoredMsg();
 		e.preventDefault();
 	};
@@ -78,6 +77,9 @@ function App() {
 	return (
 		<main>
 		<h1>Forget-me-Block: Message Time Store</h1> 
+
+		<p>A research project deliverable examining the use of the Ethereum blockchain for data preservation: <a href="https://www.preciouschicken.com/blog/posts/forget-me-block-msg-time-store/">further information</a> or <a href="https://github.com/PreciousChicken/forget-me-block-msg-time-store">fork me on Github</a>.</p>
+
 		<div className="form-group">
 		<h2>Store Message</h2>
 		<form onSubmit={handleStoreMsg}>
@@ -104,7 +106,7 @@ function App() {
 		</form>
 		</div>
 		<div className="form-group">
-		<h2>Retrieve Unlocked Messages</h2>
+		<h2>Retrieve Stored Messages</h2>
 		<p>The blockchain will be checked at {refreshTime} for new unlocked data. Alternatively:</p>
 		<form onSubmit={handleGetMsg}>
 		<div className="block-element">
