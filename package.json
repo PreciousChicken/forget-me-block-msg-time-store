@@ -1,7 +1,7 @@
 {
-  "name": "timestore",
+  "name": "forget-me-block-msg-time-store",
   "version": "1.0.0",
-  "description": "Forget-me-Block Thesis Deliverable 1",
+  "description": "A research project deliverable examining the use of the Ethereum blockchain for data preservation",
   "main": ".eslintrc.js",
   "directories": {
     "test": "test"
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/PreciousChicken/COMSM3201/tree/master/codebase/timestore"
+    "url": "https://github.com/PreciousChicken/forget-me-block-msg-time-store"
   },
   "keywords": [
     "solidity",

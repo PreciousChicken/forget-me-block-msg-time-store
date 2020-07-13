@@ -12,20 +12,24 @@ const contractAddress ='0x2c93564045502dBC5e90009e8408C0B7b888523e';
 let provider;
 let signer;
 let timeStoreContract;
-let noProviderAbort = true;
+let noProviderAbort = false;
 
 // Ensures metamask or similar installed
-if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
-	try{
-		// Ethers.js set up, gets data from MetaMask and blockchain
-		provider = new ethers.providers.Web3Provider(window.ethereum);
-		signer = provider.getSigner();
-		timeStoreContract = new ethers.Contract(contractAddress, TimeStore.abi, signer);
-		noProviderAbort = false;
-	} catch(e) {
-		noProviderAbort = true;
+async function enableEth() {
+	if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
+		try{
+			await window.ethereum.enable()
+			provider = new ethers.providers.Web3Provider(window.ethereum);
+			signer = provider.getSigner();
+			timeStoreContract = new ethers.Contract(contractAddress, TimeStore.abi, signer);
+			noProviderAbort = false;
+		} catch(e) {
+			noProviderAbort = true;
+		}
 	}
 }
+
+enableEth();
 
 
 function App() {
