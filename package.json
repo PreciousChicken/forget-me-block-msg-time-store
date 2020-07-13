@@ -1,0 +1,30 @@
+{
+  "name": "timestore",
+  "version": "1.0.0",
+  "description": "Forget-me-Block Thesis Deliverable 1",
+  "main": ".eslintrc.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "eslint-plugin-react": "^7.20.3",
+    "fs": "^0.0.1-security",
+    "moment": "^2.27.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PreciousChicken/COMSM3201/tree/master/codebase/timestore"
+  },
+  "keywords": [
+    "solidity",
+    "truffle",
+    "ethereum",
+    "blockchain"
+  ],
+  "author": "J D Hackman",
+  "license": "Unlicense"
+}
