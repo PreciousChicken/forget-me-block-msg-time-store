@@ -19,11 +19,11 @@ const path = require("path");
  *
  */
 
- // const HDWalletProvider = require('@truffle/hdwallet-provider');
- // const infuraKey = "acff9ee1b9c54a1a86b8cba7dee88132";
+ const HDWalletProvider = require('@truffle/hdwallet-provider');
+ const infuraKey = "152c9792bae14c42bda22a07ba612cf5";
 
- // const fs = require('fs');
- // const mnemonic = fs.readFileSync(".secret").toString().trim();
+ const fs = require('fs');
+ const mnemonic = fs.readFileSync(".secret").toString().trim();
 
 module.exports = {
 	contracts_build_directory: path.join(__dirname, "client/src/contracts"),
@@ -61,16 +61,16 @@ module.exports = {
     // },
 
 		//JDH: Uncomment this block for Ropsten.
-    // Useful for deploying to a public network.
-    // NB: It's important to wrap the provider as a function.
-    // ropsten: {
-    //   provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/acff9ee1b9c54a1a86b8cba7dee88132`),
-    //   network_id: 3,       // Ropsten's id
-    //   gas: 5500000,        // Ropsten has a lower block limit than mainnet
-    //   confirmations: 2,    // # of confs to wait between deployments. (default: 0)
-    //   timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
-    //   skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
-    // },
+    Useful for deploying to a public network.
+    NB: It's important to wrap the provider as a function.
+    ropsten: {
+      provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/696675505d064d3a8287ebe9fa724db0`),
+      network_id: 3,       // Ropsten's id
+      gas: 5500000,        // Ropsten has a lower block limit than mainnet
+      confirmations: 2,    // # of confs to wait between deployments. (default: 0)
+      timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
+      skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
+    },
 
     // Useful for private networks
     // private: {
