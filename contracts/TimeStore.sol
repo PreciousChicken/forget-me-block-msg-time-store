@@ -9,8 +9,8 @@ contract TimeStore  {
         string storedMsg;
         uint unlockTime;
     }
-    StoredData[] public userStoredData;
-    mapping(address => StoredData[]) public store;
+    StoredData[] private userStoredData;
+    mapping(address => StoredData[]) private store;
         
     // Finds length of current array, so to generate next ID number
     // Next ID starts at 1, so IDs of zero can be removed
