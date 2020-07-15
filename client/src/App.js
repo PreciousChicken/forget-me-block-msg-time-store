@@ -7,7 +7,7 @@ import './App.css';
 import { ethers } from "ethers";
 import TimeStore from "./contracts/TimeStore.json";
 
-const contractAddress ='0x2c93564045502dBC5e90009e8408C0B7b888523e';
+const contractAddress ='0x2f7BF4942D3956C117A8d99237e074E9d05D8301';
 
 let provider;
 let signer;
