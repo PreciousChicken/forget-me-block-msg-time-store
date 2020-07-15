@@ -138,3 +138,4 @@ package-lock.json
 #
 # JDH: 
 .secret
+deployment_details.txt
