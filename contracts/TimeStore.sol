@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: The Unlicencse
+// SPDX-License-Identifier: Unlicense
 pragma solidity ^0.6.1;
 pragma experimental ABIEncoderV2;
 
