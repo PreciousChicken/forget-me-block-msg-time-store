@@ -138,4 +138,5 @@ package-lock.json
 #
 # JDH: 
 .secret
+.infurasecret
 deployment_details.txt
