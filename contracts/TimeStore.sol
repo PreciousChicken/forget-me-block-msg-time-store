@@ -30,7 +30,7 @@ contract TimeStore  {
         store[msg.sender] = userStoredData;
     }
 
-    /// @notice Returns messages, as array of objects, all unlocked messages
+    /// @notice Returns unlocked messages, as array of objects
     /// @dev For any message not unlocked returns an object with blank values
     /// @return StoredData[] array of StoredData struct 
     function getMsgTimed() public view returns (StoredData[] memory) {
