@@ -2,6 +2,9 @@
 pragma solidity ^0.6.1;
 pragma experimental ABIEncoderV2;
 
+/// @title Message Time Store
+/// @author James D Hackman: preciouschicken.com
+/// @notice Stores a string from address, releases string after specified time
 contract TimeStore  {
 
     struct StoredData {
@@ -11,12 +14,14 @@ contract TimeStore  {
     }
     StoredData[] private userStoredData;
     mapping(address => StoredData[]) private store;
-        
-    // Finds length of current array, so to generate next ID number
-    // Next ID starts at 1, so IDs of zero can be removed
-    // Necessary as memory array in getMsgTimed returns empty arrays
-    // Add user data to temp struct, pushes temp struct to array
-    // Maps array to msg.sender
+    
+
+    /// @notice Stores incoming messages from address 
+    /** @dev nextId starts at 1, so zeros can be removed by client.
+      Neccessary as memory array in getMsgTimed can return empty arrays.
+      */
+    /// @param _storedMsg string to be stored
+    /// @param _unlockTime unix time for _storedMsg to be stored until
     function storeMsg(string memory _storedMsg, uint _unlockTime) public {
         StoredData[] memory currentData = store[msg.sender];
         uint nextId = currentData.length + 1;
@@ -25,22 +30,25 @@ contract TimeStore  {
         store[msg.sender] = userStoredData;
     }
 
-
-    // Returns from smart contract, as array of objects, all messages that are unlocked
-    // For any message not unlocked returns an object with blank values
+    /// @notice Returns messages, as array of objects, all unlocked messages
+    /// @dev For any message not unlocked returns an object with blank values
+    /// @return StoredData[] array of StoredData struct 
     function getMsgTimed() public view returns (StoredData[] memory) {
         StoredData[] memory currentData = store[msg.sender];
         StoredData[] memory unlockedData = new StoredData[](currentData.length);
         uint unlockedDataIndex = 0;
         for (uint i = 0; i < currentData.length; i++) {
             if (currentData[i].unlockTime <= now) {
-                StoredData memory newData = StoredData(currentData[i].id, currentData[i].storedMsg, currentData[i].unlockTime);
+                StoredData memory newData = StoredData(
+                    currentData[i].id, 
+                    currentData[i].storedMsg, 
+                    currentData[i].unlockTime);
                 unlockedData[unlockedDataIndex] = newData;
                 unlockedDataIndex++;
             }
         }
         return unlockedData;
     }
-    
+
 }
 
